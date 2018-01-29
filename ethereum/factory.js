@@ -1,9 +1,9 @@
-import web3 from './web3'
+import web3 from './web3';
 import CampaignFactory from './build/CampaignFactory.json';
 
-const instance is new web3.eth.Contract (
+const instance = new web3.eth.Contract(
   JSON.parse(CampaignFactory.interface),
-  //deployed address goes below '0x5555555...'/
-
+  '0xFF90935E7889ba030a72d26616c87543656639c5'
 );
+
 export default instance;
