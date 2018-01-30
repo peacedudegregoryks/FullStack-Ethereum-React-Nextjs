@@ -10,19 +10,48 @@ class RequestNew extends Component
     value: '',
     description: '',
     recipent: ''
+    loading: false,
+    errorMessage:''
   };
 
-  static async getInitialProps(props){
+  static async getInitialProps(props) {
     const { address } = props.query;
 
     return { address };
   }
 
+  onSubmit = async event => {
+    event.preventDefault();
+
+    const campaign = Campaign(this.state.address);
+    const { description, value, recipient } = this.state;
+
+    this.setState({ loading: true, errorMessage: ''});
+
+    try {
+      const accounts = await web3.eth.getAccounts();
+      await campaign.methods.createRequest(
+        description,
+        web.utils.toWei(value, 'ether'),
+        recipient
+      ).send({ from: accounts[0] });
+
+      Router.pushRoute(`/campaigns/${this.props.address}/requests`);
+    } catch (err) {
+      this.setState({ errorMessage: err.message, });
+    }
+
+    this.setState({ loading: false, });
+  };
+
   render() {
     return (
     <Layout>
+    <Link route={`/campaigns/${this.props.address}/requests`}>
+    <a>Back</a>
+    </Link>
     <h3>Create a Request</h3>
-      <Form>
+      <Form onSubmit={this.onSubmit} error={!!this.state.errorMessage}>
           <Form.Field>
             <label>Description</label>
             <Input
@@ -50,7 +79,8 @@ class RequestNew extends Component
             />
           </Form.Field>
 
-          <Button primary>Create!</Button>
+          <Message error header="Oops!" content={this.state.errorMessage} />
+          <Button primary loading={this.state.loading}>Create!</Button>
         </Form>
       </Layout>
     );
