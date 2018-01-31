@@ -5,16 +5,15 @@ import { Link } from '../routes';
 export default () => {
   return (
     <Menu style={{ marginTop: '10px' }}>
-    <Link> route="/">
+    <Link route="/">
       <a className="item">WIRDCoin</a>
     </Link>
-
     <Menu.Menu position="right">
-    <Link> route="/">
+    <Link route="/">
       <a className="item">Campaigns</a>
     </Link>
 
-    <Link> route="/campaigns/new">
+    <Link route="/campaigns/new">
       <a className="item">+</a>
     </Link>
     </Menu.Menu>
