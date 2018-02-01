@@ -37,7 +37,6 @@ class CampaignNew extends Component {
       <h3>Creat a Campaign!</h3>
 
       <Form onSubmit={this.onSubmit} error={!!this.state.errorMessage}>
-      {!!this.state.errorMessage}>
         <Form.Field>
           <label>Minimum Contribution</label>
           <Input
