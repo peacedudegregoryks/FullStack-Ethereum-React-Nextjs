@@ -1,1 +1,1 @@
-# Gregory Kennedy's Blockchain experiments 
+# Gregory Kennedy's ethereum experiment. 
