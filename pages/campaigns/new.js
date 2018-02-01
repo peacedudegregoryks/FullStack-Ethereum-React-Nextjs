@@ -36,7 +36,7 @@ class CampaignNew extends Component {
     <Layout>
       <h3>Creat a Campaign!</h3>
 
-      <Form onSubmit={this.onSubmit} error={!!this.state.console.errorMessage}>
+      <Form onSubmit={this.onSubmit} error={!!this.state.errorMessage}>
       {!!this.state.errorMessage}>
         <Form.Field>
           <label>Minimum Contribution</label>
@@ -47,7 +47,7 @@ class CampaignNew extends Component {
           onChange={event => this.setState({ minimumContribution: event.target.value})}
           />
         </Form.Field>
-        
+
         <Message error header="Oops!" content={this.state.errorMessage} />
         <Button loading={this.state.loading} primary>
         Create!
