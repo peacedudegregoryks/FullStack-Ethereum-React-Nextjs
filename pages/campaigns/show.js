@@ -1,4 +1,4 @@
-import React, { Component } 'react';
+import React, { Component } from 'react';
 import { Card, Grid, Button } from 'semantic-ui-react';
 import Layout from '../../components/Layout';
 import Campaign from '../../ethereum/campaign';
