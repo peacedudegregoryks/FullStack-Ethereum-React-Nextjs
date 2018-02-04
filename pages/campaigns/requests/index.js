@@ -9,7 +9,7 @@ class RequestIndex extends Component {
   static async getInitialProps(props) {
     const { address } = props.query;
     const campaign = Campaign(address);
-    const requestCount = await campaign.methods.getRequestsCount().call();
+    const requestCount = await campaign.methods.getRequestCount().call();
     const approversCount = await campaign.methods.approversCount().call();
 
     const request = await Promise.all(
@@ -23,19 +23,19 @@ class RequestIndex extends Component {
     return { address, requests, requestCount, approversCount };
   }
 
-renderRows() {
-  return this.props.request.map((request, index) => {
-    return (
-    <RequestRow
-      key={index}
-      id={index}
-      request={request}
-      address={this.props.address}
-      approversCount={this.props.approversCount}
-      />
-    );
-  });
-}
+  renderRows() {
+    return this.props.requests.map((request, index) => {
+      return (
+      <RequestRow
+        key={index}
+        id={index}
+        request={request}
+        address={this.props.address}
+        approversCount={this.props.approversCount}
+        />
+      );
+    });
+  }
 
   render() {
     const { Header, Row, HeaderCell, Body } = Table;
@@ -45,7 +45,7 @@ renderRows() {
       <h3>Requests</h3>
       <Link route={`/campaigns${this.props.address}/requests/new`}>
         <a>
-          <Button primary floated="right" style={{ marginBottom 10 }}>
+          <Button primary floated="right" style={{ marginBottom: 10 }}>
             Add Request
             </Button>
         </a>
@@ -62,7 +62,7 @@ renderRows() {
             <HeaderCell>Finalize</HeaderCell>
             </Row>
           </Header>
-          <Body>{this.renderRows()}</Body
+          <Body>{this.renderRows()}</Body>
         </Table>
         <div>Found {this.props.requestCount} requests.</div>
       </Layout>

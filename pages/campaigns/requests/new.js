@@ -5,7 +5,7 @@ import web3 from '../../../ethereum/web3';
 import { Link, Router } from '../../../routes';
 import Layout from '../../../components/Layout';
 
-class RequestNew extends Component
+class RequestNew extends Component {
   state = {
     value: '',
     description: '',
